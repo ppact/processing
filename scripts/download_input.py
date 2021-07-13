@@ -20,6 +20,7 @@ DATA_FILES = {
     ],
     "baton_rouge_pd": [
         "https://www.dropbox.com/sh/rc4a4961qqxu0co/AADmtLqCxY_k5ZlbPKtOmcKHa/Data%20Collected/Baton%20Rouge%20Police%20Department/Baton%20Rouge_PD_CPRR_2018.csv?dl=1",  # noqa
+        "https://www.dropbox.com/s/oco6pc2hf9zoe07/baton_rouge_pd_pprr_2021.csv?dl=1",  # noqa
     ],
     "baton_rouge_csd": [
         "https://www.dropbox.com/sh/rc4a4961qqxu0co/AAATpIeZNzv0NJlzfSFOJKqZa/Data%20Collected/Baton%20Rouge%20Civil%20Service%20Department/Baton%20Rouge_CSD_PPRR_2017.csv?dl=1",  # noqa
@@ -37,7 +38,8 @@ DATA_FILES = {
         "https://www.dropbox.com/s/eidur1nb3od5l55/la_lprr_appellants.csv?dl=1",  # noqa
     ],
     "louisiana_csd": [
-        "https://www.dropbox.com/sh/tca7uxdcm2fqbgq/AAACRDPB2CJJoAcmR2Ws6KAsa/Louisiana_CSD_PPRR_2021.csv?dl=1",  # noqa
+        "https://www.dropbox.com/sh/afmp68wb09jbtif/AABIYkrTYK_-pASqMf5Ysibya/louisiana_csd_pprr_demographics_2021.csv?dl=1",  # noqa
+        "https://www.dropbox.com/sh/afmp68wb09jbtif/AACTN6MNEjsp6sAs5_zCbUhKa/louisiana_csd_pprr_terminations_2021.csv?dl=1",  # noqa
     ],
     "brusly_pd": [
         "https://www.dropbox.com/sh/s3qchv84i0j5tsd/AAAx1lt_f2iqEERkEjK7wj2_a/Complaints%20Data/Brusly_PD_CPRR_2020.csv?dl=1",  # noqa
@@ -76,7 +78,7 @@ DATA_FILES = {
         "https://www.dropbox.com/sh/mwabzn85manxzo6/AACgbqjIwVL3XetaFcQHo-e5a/st_tammany_department_codes_tabula.csv?dl=1",  # noqa
         "https://www.dropbox.com/s/ir4jad3jm13n6se/st_tammany_so_cprr_2011-2020_tabula.csv?dl=1",  # noqa
         "https://www.dropbox.com/s/5o4z29raa7djvsh/st_tammany_so_cprr_2020-2021_tabula.csv?dl=1",  # noqa
-        "https://www.dropbox.com/s/2wsd2y9u2j4miqr/st._tammany_pprr_2020.csv?dl=1",  # noqa
+        "https://www.dropbox.com/s/j20pcmebe97ql7y/st._tammany_so_pprr_2020.csv?dl=1",  # noqa
     ],
     "plaquemines_so": [
         "https://www.dropbox.com/s/g1b98kn4e4k1dtr/plaquemines_so_cprr_2019.csv?dl=1",  # noqa

@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../')
-import pandas as pd    
+import pandas as pd
 from lib.path import data_file_path, ensure_data_dir
 from datamatch import JaroWinklerSimilarity, ThresholdMatcher, ColumnsIndex
 
@@ -39,4 +39,3 @@ if __name__ == '__main__':
     cprr = match_cprr_and_post(cprr, post)
     ensure_data_dir('match')
     cprr.to_csv(data_file_path('match/cprr_lafayette_so_2015_2020.csv'), index=False)
- 

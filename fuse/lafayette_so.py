@@ -32,7 +32,7 @@ def fuse_events(cprr, post):
             'prefix': 'hire', 'keep': ['uid', 'agency', 'employment_status']
         },
         events.OFFICER_PC_12_QUALIFICATION: {
-            'prefix': 'last_pc_12_qualification', 'parse_date': '%Y-%m-%d', 'keep': 
+            'prefix': 'last_pc_12_qualification', 'parse_date': '%Y-%m-%d', 'keep':
             ['uid', 'agency', 'employment_status'],
         }
     }, ['uid'])

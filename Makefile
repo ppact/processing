@@ -26,7 +26,7 @@ all: data/fuse/per_vivian_pd.csv data/fuse/event_vivian_pd.csv
 all: data/fuse/per_covington_pd.csv data/fuse/event_covington_pd.csv
 all: data/fuse/per_slidell_pd.csv data/fuse/event_slidell_pd.csv
 all: data/fuse/per_scott_pd.csv data/fuse/event_scott_pd.csv data/fuse/com_scott_pd.csv
-all: data/fuse/event_tangipahoa_so.csv data/fuse/com_tangipahoa_so.csv
+all: data/fuse/per_tangipahoa_so.csv data/fuse/event_tangipahoa_so.csv data/fuse/com_tangipahoa_so.csv
 all: data/fuse/per_new_orleans_so.csv data/fuse/event_new_orleans_so.csv data/fuse/com_new_orleans_so.csv
 all: data/fuse/per_shreveport_pd.csv data/fuse/event_shreveport_pd.csv data/fuse/com_shreveport_pd.csv
 all: data/fuse/event_lafayette_so.csv data/fuse/per_lafayette_so.csv data/fuse/com_lafayette_so.csv 
@@ -97,7 +97,7 @@ data/fuse/per_slidell_pd.csv data/fuse/event_slidell_pd.csv: fuse/slidell_pd.py 
 data/fuse/per_scott_pd.csv data/fuse/com_scott_pd.csv data/fuse/event_scott_pd.csv: fuse/scott_pd.py data/match/post_event_scott_pd_2021.csv data/clean/pprr_scott_pd_2021.csv
 	python fuse/scott_pd.py
 
-data/fuse/com_tangipahoa_so.csv data/fuse/event_tangipahoa_so.csv: fuse/tangipahoa_so.py data/match/post_event_tangipahoa_so_2015_2021.csv data/clean/cprr_tangipahoa_so_2015_2021.csv
+data/fuse/per_tangipahoa_so.csv data/fuse/com_tangipahoa_so.csv data/fuse/event_tangipahoa_so.csv: fuse/tangipahoa_so.py data/match/cprr_tangipahoa_so_2015_2021.csv data/clean/pprr_post_2020_11_06.csv
 	python fuse/tangipahoa_so.py
 
 data/fuse/per_new_orleans_so.csv data/fuse/event_new_orleans_so.csv data/fuse/com_new_orleans_so.csv: fuse/new_orleans_so.py data/clean/pprr_post_2020_11_06.csv data/match/cprr_new_orleans_so_2019.csv
@@ -313,3 +313,6 @@ data/clean/cprr_shreveport_pd_2018_2019.csv data/clean/cprr_codebook_shreveport_
 
 data/clean/cprr_lafayette_so_2015_2020.csv: clean/lafayette_so.py data/lafayette_so/lafayette_so_cprr_2015_2020.csv
 	python clean/lafayette_so.py
+
+data/clean/pprr_baton_rouge_pd_2021.csv: clean/baton_rouge_pd_pprr.py data/baton_rouge_pd/baton_rouge_pd_pprr_2021.csv
+	python clean/baton_rouge_pd_pprr.py

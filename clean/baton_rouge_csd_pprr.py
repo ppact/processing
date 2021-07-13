@@ -1,6 +1,6 @@
 from lib.columns import clean_column_names, set_values
 from lib.clean import (
-    clean_names, parse_dates_with_known_format, clean_salaries, standardize_desc_cols, 
+    clean_names, parse_dates_with_known_format, clean_salaries, standardize_desc_cols,
     clean_employment_status
 )
 from lib.path import data_file_path, ensure_data_dir

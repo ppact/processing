@@ -162,12 +162,20 @@ def match_lprr_against_post(lprr, post):
 
 if __name__ == "__main__":
     df17 = pd.read_csv(data_file_path(
-        "clean/pprr_baton_rouge_csd_2017.csv"))
+        "clean/pprr_baton_rouge_csd_2017.csv",
+    ))
     df19 = pd.read_csv(data_file_path(
-        "clean/pprr_baton_rouge_csd_2019.csv"))
+        "clean/pprr_baton_rouge_csd_2019.csv",
+    ))
     lprr = pd.read_csv(data_file_path(
-        "clean/lprr_baton_rouge_fpcsb_1992_2012.csv"))
-    cprr = pd.read_csv(data_file_path("clean/cprr_baton_rouge_pd_2018.csv"))
+        "clean/lprr_baton_rouge_fpcsb_1992_2012.csv",
+    ))
+    cprr = pd.read_csv(data_file_path(
+        "clean/cprr_baton_rouge_pd_2018.csv",
+    ))
+    pprr = pd.read_csv(data_file_path(
+        'clean/pprr_baton_rouge_pd_2021.csv'
+    ))
     df17, df19 = match_csd_pprr_2017_v_2019(df17, df19)
     lprr = match_lprr_against_pprr(lprr, df17, 2017, 0.816)
     lprr = match_lprr_against_pprr(lprr, df19, 2019, 0.97)

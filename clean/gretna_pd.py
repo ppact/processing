@@ -34,7 +34,7 @@ def clean_rank_desc(df):
     df.rank_desc = df.rank_desc.str.lower().str.strip()\
         .str.replace(r' \(d.\)$', '', regex=True)\
         .str.replace(r'sergeant ?(officer)?', 'sargeant', regex=True)
-    return df 
+    return df
 
 
 def clean():

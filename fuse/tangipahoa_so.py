@@ -5,6 +5,7 @@ from lib.columns import (
     rearrange_complaint_columns,
 )
 from lib import events
+from lib.personnel import fuse_personnel
 from lib.uid import ensure_uid_unique
 import pandas as pd
 
@@ -45,6 +46,7 @@ if __name__ == '__main__':
     cprr = pd.read_csv(data_file_path(
         'match/cprr_tangipahoa_so_2015_2021.csv'))
     post = prepare_post_data()
+    per = fuse_personnel(cprr, post)
     complaints = rearrange_complaint_columns(cprr)
     ensure_uid_unique(complaints, 'complaint_uid')
     event = fuse_events(cprr, post)
@@ -54,6 +56,10 @@ if __name__ == '__main__':
         index=False,
     )
     complaints.to_csv(
-        data_file_path('fuse/com_tangipahoa_so.csv'), 
+        data_file_path('fuse/com_tangipahoa_so.csv'),
+        index=False,
+    )
+    per.to_csv(
+        data_file_path('fuse/per_tangipahoa_so.csv'),
         index=False,
     )
