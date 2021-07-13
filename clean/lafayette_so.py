@@ -88,13 +88,13 @@ def clean():
         .pipe(clean_action)\
         .pipe(clean_complete)\
         .pipe(clean_days)\
-        .pipe(set_values, { 
-            'agency': 'Lafayette SO', 
-            'data_production_year': '2021', 
+        .pipe(set_values, {
+            'agency': 'Lafayette SO',
+            'data_production_year': '2021',
         })\
         .pipe(gen_uid, ['first_name', 'last_name', 'agency'])\
         .pipe(gen_uid, ['uid', 'charges', 'action', 'tracking_number'], 'complaint_uid')
-    return df 
+    return df
 
 
 if __name__ == "__main__":

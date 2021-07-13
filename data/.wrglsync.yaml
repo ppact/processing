@@ -49,7 +49,7 @@ repos:
   clean-cprr-tangipahoa-so-2015-2021:
     fileName: clean/cprr_tangipahoa_so_2015_2021.csv
   clean-cprr-lafayette-so-2015-2020:
-      fileName: clean/cprr_lafayette_so_2015_2020.csv
+    fileName: clean/cprr_lafayette_so_2015_2020.csv
   match-cprr-new-orleans-harbor-pd-2020:
     fileName: match/cprr_new_orleans_harbor_pd_2020.csv
   match-pprr-baton-rouge-csd-2017:
@@ -136,7 +136,7 @@ repos:
       - complaint_uid
   com-scott-pd:
     fileName: fuse/com_scott_pd.csv
-    primaryKey: 
+    primaryKey:
       - complaint_uid
   com-tangipahoa-so:
     fileName: fuse/com_tangipahoa_so.csv
@@ -150,8 +150,7 @@ repos:
     fileName: fuse/com_shreveport_pd.csv
     primaryKey:
       - complaint_uid
-  com-lafayette-so:
-    fileName/fuse_com_lafayette_so.csv
+  com-lafayette-so: fileName/fuse_com_lafayette_so.csv
   uof-new-orleans-pd:
     fileName: fuse/uof_new_orleans_pd.csv
     primaryKey:
@@ -256,6 +255,14 @@ repos:
     fileName: fuse/per_shreveport_pd.csv
     primaryKey:
       - uid
+  per-tangipahoa-pd:
+    fileName: fuse/per_tangipahoa_pd.csv
+    primaryKey:
+      - uid
+  per-ponchatoula-pd:
+    fileName: fuse/per_ponchatoula_pd.csv
+    primaryKey:
+      - uid
   event-new-orleans-pd:
     fileName: fuse/event_new_orleans_pd.csv
     primaryKey:
@@ -342,7 +349,8 @@ repos:
       - event_uid
   event-tangipahoa-so:
     fileName: fuse/event_tangipahoa_so.csv
-    primaryKey: 
+    primaryKey:
+      - event_uid
   event-new-orleans-so:
     fileName: fuse/event_new_orleans_so.csv
     primaryKey:
@@ -353,6 +361,10 @@ repos:
       - event_uid
   event-lafayette-so:
     fileName: fuse/event_lafayette_so.csv
+    primaryKey:
+      - event_uid
+  event-ponchatoula-so:
+    fileName: fuse/event_ponchatoula_so.csv
     primaryKey:
       - event_uid
   personnel:

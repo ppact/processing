@@ -56,7 +56,6 @@ def clean_actions_history():
         .pipe(clean_rank_desc)
 
 
-
 def sum_salaries(df):
     records = []
     record = None

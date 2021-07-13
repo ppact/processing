@@ -19,6 +19,7 @@ def clean_employee_type(df):
         r'commisioned', 'commissioned')
     return df
 
+
 def strip_time_from_dates(df, cols):
     for col in cols:
         df.loc[:, col] = df[col].str.replace(r' \d+:\d+$', '', regex=True)
