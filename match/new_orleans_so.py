@@ -9,24 +9,35 @@ sys.path.append('../')
 
 
 def deduplicate_cprr_personnel(cprr):
-    df = cprr.loc[cprr.uid.notna(), ['employee_id', 'first_name', 'last_name', 'uid']]\
-        .drop_duplicates().set_index('uid', drop=True)
+    df = cprr.loc[
+        cprr.uid.notna(),
+        ['employee_id', 'first_name', 'last_name', 'middle_initial', 'uid']
+    ].drop_duplicates().set_index('uid', drop=True)
 
     matcher = ThresholdMatcher(ColumnsIndex('employee_id'), {
         'first_name': JaroWinklerSimilarity(),
         'last_name': JaroWinklerSimilarity(),
     }, df, variator=Swap('first_name', 'last_name'))
     decision = 0.9
-    matcher.save_pairs_to_excel(data_file_path(
-        "match/new_orleans_so_cprr_dedup.xlsx"), decision)
-    matches = matcher.get_index_pairs_within_thresholds(decision)
+    matcher.save_clusters_to_excel(data_file_path(
+        "match/new_orleans_so_cprr_dedup.xlsx"
+    ), decision, decision)
+    clusters = matcher.get_index_clusters_within_thresholds(decision)
     # canonicalize name and uid
-    for uid, al_uid in matches:
-        for col in ['uid', 'first_name', 'last_name', 'middle_initial']:
-            v = cprr.loc[cprr.uid == uid, col]
-            if hasattr(v, 'shape'):
-                v = v.iloc[0]
-            cprr.loc[cprr.uid == al_uid, col] = v
+    for cluster in clusters:
+        uid, first_name, last_name, middle_initial = None, '', '', ''
+        for idx in cluster:
+            row = df.loc[idx]
+            if (
+                uid is None
+                or len(row.first_name) > len(first_name)
+                or (len(row.first_name) == len(first_name) and len(row.last_name) > len(last_name))
+            ):
+                uid, first_name, last_name, middle_initial = idx, row.first_name, row.last_name, row.middle_initial
+        cprr.loc[cprr.uid.isin(cluster), 'uid'] = uid
+        cprr.loc[cprr.uid == uid, 'first_name'] = first_name
+        cprr.loc[cprr.uid == uid, 'last_name'] = last_name
+        cprr.loc[cprr.uid == uid, 'middle_initial'] = middle_initial
     return cprr
 
 

@@ -19,20 +19,24 @@ def deduplicate_cprr_officers(cprr):
         'last_name': JaroWinklerSimilarity(),
     }, df)
     decision = .866
-    matcher.save_pairs_to_excel(
-        data_file_path('match/tangipahoa_so_cprr_2015_2021_deduplicate.xlsx'), decision
-    )
-    matches = matcher.get_index_pairs_within_thresholds(decision)
-    match_dict = dict(matches)
-
-    cprr.loc[:, 'uid'] = cprr.uid.map(lambda x: match_dict.get(x, x))
-    cprr = cprr.sort_values(['uid', 'first_name', 'last_name'], ascending=[True, False, False])
-    names = dict()
-    for idx, row in cprr.iterrows():
-        if row.uid in names:
-            cprr.loc[idx, 'first_name'], cprr.loc[idx, 'last_name'] = names[row.uid]
-        else:
-            names[row.uid] = (row.first_name, row.last_name)
+    matcher.save_clusters_to_excel(data_file_path(
+        'match/tangipahoa_so_cprr_2015_2021_deduplicate.xlsx'
+    ), decision, decision)
+    clusters = matcher.get_index_clusters_within_thresholds(decision)
+    # canonicalize name and uid
+    for cluster in clusters:
+        uid, first_name, last_name = None, '', ''
+        for idx in cluster:
+            row = df.loc[idx]
+            if (
+                uid is None
+                or len(row.first_name) > len(first_name)
+                or (len(row.first_name) == len(first_name) and len(row.last_name) > len(last_name))
+            ):
+                uid, first_name, last_name = idx, row.first_name, row.last_name
+        cprr.loc[cprr.uid.isin(cluster), 'uid'] = uid
+        cprr.loc[cprr.uid == uid, 'first_name'] = first_name
+        cprr.loc[cprr.uid == uid, 'last_name'] = last_name
     return cprr
 
 

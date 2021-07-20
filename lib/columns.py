@@ -64,8 +64,10 @@ COMPLAINT_COLUMNS = [
     "rank_code",  # rank code
     "rank_desc",  # rank title or description
     "employment_status",
-    'investigator',
-    'shift_supervisor',
+    "investigator",
+    "investigator_uid",
+    "investigator_rank",
+    "shift_supervisor",
     # "Complaint Classification",  # ?
     # "Bureau of Complainant",  # ?
     # "Division of Complainant",  # ?

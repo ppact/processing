@@ -42,6 +42,8 @@ def standardize_from_lookup_table(df: pd.DataFrame, col: str, lookup_table: list
     unmatched_seqs = set()
 
     def find_seq(s):
+        if pd.isna(s):
+            return []
         seqs = []
         sub_strs = [s]
         while len(sub_strs) > 0:

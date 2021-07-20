@@ -153,10 +153,15 @@ class Builder(object):
             elif kwargs['salary_freq'] not in salary.cat_type.categories:
                 raise InvalidSalaryFreqException(kwargs['salary_freq'])
         kwargs["kind"] = event_kind
-        if raw_date_str is not None:
-            self._extract_date(kwargs, raw_date_str, strptime_format)
-        elif raw_datetime_str is not None:
-            self._extract_datetime(kwargs, raw_datetime_str, strptime_format)
+        try:
+            if raw_date_str is not None:
+                self._extract_date(kwargs, raw_date_str, strptime_format)
+            elif raw_datetime_str is not None:
+                self._extract_datetime(kwargs, raw_datetime_str, strptime_format)
+        except ValueError:
+            if ignore_bad_date:
+                return
+            raise
         if 'year' not in kwargs or pd.isnull(kwargs["year"]) or kwargs["year"] == "":
             if ignore_bad_date:
                 return
@@ -208,6 +213,7 @@ class Builder(object):
           it is used as strptime format string.
         - parse_datetime: Same as "parse_date" but extract from column "{prefix}_datetime" instead. And time
           is also extracted.
+        - ignore_bad_date: If set to True then ignore events with bad date instead of raising error
         - id_cols: Overwrite `id_cols` for this event kind.
 
         Args:
@@ -255,7 +261,11 @@ class Builder(object):
                 fields = dict(
                     list(fields.items()) + kwargs_funcs[kind](row))
                 self.append_record(
-                    kind, id_cols if 'id_cols' not in obj else obj['id_cols'], **fields)
+                    kind,
+                    id_cols if 'id_cols' not in obj else obj['id_cols'],
+                    ignore_bad_date=obj.get('ignore_bad_date', False),
+                    **fields,
+                )
 
     def to_frame(self, output_duplicated_events: bool = False) -> pd.DataFrame:
         """Create a DataFrame out of collected events.
